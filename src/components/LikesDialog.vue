@@ -7,7 +7,7 @@
             <q-avatar v-if="!!accountsMap[likeId]" size="64px">
               <img :src="accountsMap[likeId]?.avatarUrl" />
             </q-avatar>
-            <q-skeleton v-else type="QAvatar" size="64px"/>
+            <q-skeleton v-else type="QAvatar" size="64px" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ accountsMap[likeId]?.name }}</q-item-label>
@@ -37,7 +37,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.card-container{
-  width:200px;
+.card-container {
+  width: 200px;
 }
 </style>

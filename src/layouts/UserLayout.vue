@@ -48,18 +48,18 @@ import { useAccountStore } from 'stores/account-store';
 import { useAuthStore } from 'stores/auth-store';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  async beforeRouteEnter() {
-
-    const { getAccount } = useAccountStore();
-    const { tokenData } = storeToRefs(useAuthStore());
-    try {
-      await getAccount(tokenData.value?.userId || '');
-    } catch (error) {
-      console.log('Failed to get account', error);
-    }
-  },
-});
+// export default defineComponent({
+//   async beforeRouteEnter() {
+//
+//     const { getAccount } = useAccountStore();
+//     const { tokenData } = storeToRefs(useAuthStore());
+//     try {
+//       await getAccount(tokenData.value?.userId || '');
+//     } catch (error) {
+//       console.log('Failed to get account', error);
+//     }
+//   },
+// });
 </script>
 
 <script setup lang="ts">

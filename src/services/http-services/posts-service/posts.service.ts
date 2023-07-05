@@ -10,6 +10,9 @@ class PostsService {
   getFriendsPosts() {
     return httpService.get('posts/friends');
   }
+  getUserPosts(userId:string){
+    return httpService.get(`posts/users/${userId}`)
+  }
   createPost(content: string) {
     return httpService.post('posts', { content });
   }

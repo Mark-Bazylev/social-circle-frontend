@@ -5,7 +5,7 @@
     class="column card-container justify-center q-ma-md"
   >
     <q-list>
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple :to="{name:RouteNames.profile,params:{id:accountsMap[post.createdBy]?.createdBy}}">
         <q-item-section side>
           <q-avatar size="64px">
             <img :src="accountsMap[post.createdBy]?.avatarUrl" />
@@ -27,7 +27,7 @@
           >{{ post.likes.length }}
           {{ post.likes.length === 1 ? 'like' : 'likes' }}</q-btn
         >
-        <q-btn flat
+        <q-btn @click="showChat[index] = !showChat[index]" flat
           >
           {{ post.commentsLength }}
           {{ post.commentsLength === 1 ? 'comment' : 'comments' }}</q-btn
@@ -71,6 +71,7 @@ import { storeToRefs } from 'pinia';
 import CommentsComponent from 'components/CommentsComponent.vue';
 import { getDayOfWeek } from '../utils/dates';
 import { useCommentsStore } from 'stores/comments-store';
+import {RouteNames} from "src/router/routes";
 
 const props = defineProps(['posts', 'accountsMap']);
 const authStore = useAuthStore();

@@ -1,9 +1,28 @@
 <template>
-  <div>
-    <h1>This is Home Page</h1>
-  </div>
-  <div class="column justify-center">
-    <PostsComponent :posts="sortedFriendsPosts" :accountsMap="accountsMap" />
+  <div class="q-pa-md q-gutter-md">
+    <q-card class="relative-position card-example" flat bordered>
+      <q-card-section class="q-pb-none">
+        <h2 class="row justify-center">Home Page</h2>
+      </q-card-section>
+
+      <q-card-section>
+        <transition
+          appear
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
+          <div v-if="showPosts">
+            <PostsComponent
+              :posts="sortedFriendsPosts"
+              :accountsMap="accountsMap"
+            />
+          </div>
+          <div v-else>
+            <PostsSkeleton />
+          </div>
+        </transition>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 <script lang="ts">
@@ -27,14 +46,19 @@ async function getData() {
 export default defineComponent({
   async beforeRouteEnter() {
     try {
-      Loading.show();
+      showTextLoading();
       await getData();
-    } catch (e) {
-    } finally {
-      Loading.hide();
-    }
+    } catch (error) {}
   },
 });
+const showPosts = ref(false);
+
+function showTextLoading() {
+  showPosts.value = false;
+  setTimeout(() => {
+    showPosts.value = true;
+  }, 1000);
+}
 </script>
 <script setup lang="ts">
 import { usePostsStore } from 'stores/posts-store';
@@ -42,6 +66,8 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useFriendsStore } from 'stores/friends-store';
 import PostsComponent from 'components/PostsComponent.vue';
+import ProfileInput from 'components/profile/ProfileInput.vue';
+import PostsSkeleton from 'components/PostsSkeleton.vue';
 
 const { accountsMap } = storeToRefs(friendsStore);
 </script>

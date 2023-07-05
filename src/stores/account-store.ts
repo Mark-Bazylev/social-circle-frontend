@@ -10,6 +10,7 @@ export const useAccountStore = defineStore('account', () => {
   }
   async function getAccount(id: string) {
     const res = await accountsService.getAccount(id);
+    console.log(res.data)
     currentAccount.value = res.data;
     return res;
   }

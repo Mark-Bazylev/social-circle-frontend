@@ -10,6 +10,12 @@
         <q-tab-panel name="friends">
           <q-list>
             <q-item
+              clickable
+              v-ripple
+              :to="{
+                name: RouteNames.profile,
+                params: { id: accountsMap[userId].createdBy },
+              }"
               class="row"
               :key="userId"
               v-for="userId in friendsData?.friendsList || []"
@@ -50,7 +56,7 @@
           </q-list>
           <div
             v-else
-            class="q-pa-md row justify-center align-center text-black bg-warning"
+            class="q-pa-md row justify-center align-center text-black"
           >
             No Sent Requests
           </div>
@@ -135,6 +141,7 @@ import { onMounted, ref } from 'vue';
 import { useFriendsStore } from 'stores/friends-store';
 import { storeToRefs } from 'pinia';
 import { Account } from 'src/services/http-services/accounts-service/models';
+import { RouteNames } from 'src/router/routes';
 
 const { getAllAccounts } = useAccountStore();
 const store = useFriendsStore();
@@ -185,7 +192,7 @@ const acceptFriend = async (userId: string) => {
       friendsData.value?.friendsList.push(userId);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   } finally {
     acceptFriendLoading.value[userId] = false;
   }

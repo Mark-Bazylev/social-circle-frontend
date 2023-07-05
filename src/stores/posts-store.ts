@@ -13,6 +13,12 @@ export const usePostsStore = defineStore('posts', () => {
 
   async function getPosts() {
     const res = await postsService.getPosts();
+    console.log(res,'SAY WHAAT')
+    posts.value = res.data.posts;
+    return res.data.posts;
+  }
+  async function getUserPosts(userId: string) {
+    const res = await postsService.getUserPosts(userId);
     posts.value = res.data.posts;
     return res.data.posts;
   }
@@ -42,6 +48,7 @@ export const usePostsStore = defineStore('posts', () => {
     getPosts,
     getPost,
     getFriendsPosts,
+    getUserPosts,
     createPost,
     likePost,
     unlikePost,

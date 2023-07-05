@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 export enum RouteNames {
-  protectedRoute='protectedRoute',
+  protectedRoute = 'protectedRoute',
   main = 'main',
   home = 'home',
   profile = 'profile',
@@ -9,6 +9,7 @@ export enum RouteNames {
   auth = 'auth',
   login = 'login',
   register = 'register',
+  profileNotFound = 'profileNotFound',
 }
 const routes: RouteRecordRaw[] = [
   {
@@ -19,9 +20,9 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/',
-        name:RouteNames.main,
+        name: RouteNames.main,
         redirect: { name: RouteNames.home },
-        component:()=> import('layouts/UserLayout.vue'),
+        component: () => import('layouts/UserLayout.vue'),
         children: [
           {
             path: 'home',
@@ -29,7 +30,7 @@ const routes: RouteRecordRaw[] = [
             component: () => import('pages/HomePage.vue'),
           },
           {
-            path: 'profile',
+            path: 'profile/:id?',
             name: RouteNames.profile,
             component: () => import('pages/ProfilePage.vue'),
           },
@@ -65,7 +66,11 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-
+  {
+    path: '/profileNotFound',
+    name: RouteNames.profileNotFound,
+    component: () => import('pages/ProfileNotFound.vue'),
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

@@ -1,6 +1,19 @@
 <template>
   <q-page class="column justify-center">
     <q-card>
+      <q-btn
+        clickable
+        v-ripple
+        :to="{ name: RouteNames.home }"
+        class="bg-primary text-white row"
+        v-show="isAlreadyLoggedIn"
+      >
+        <q-avatar>
+          <img :src="currentAccount?.avatarUrl" alt="" />
+        </q-avatar>
+        <div class="q-ml-md">continue as {{ currentAccount?.name }}</div>
+      </q-btn>
+
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md q-pa-md">
         <q-input
           filled
@@ -23,20 +36,18 @@
           lazy-rules
           :rules="[]"
         >
-          <template #append>
-            <q-btn
-              @click="isPasswordVisible = !isPasswordVisible"
-              :icon="isPasswordVisible ? 'visibility_off' : 'visibility'"
-              unelevated
-              rounded
-              dense
-            ></q-btn>
-          </template>
+          <q-btn
+            @click="isPasswordVisible = !isPasswordVisible"
+            :icon="isPasswordVisible ? 'visibility_off' : 'visibility'"
+            unelevated
+            rounded
+            dense
+          ></q-btn>
         </q-input>
         <Transition>
           <q-card
             flat
-            v-if="errorMsg"
+            v-show="errorMsg"
             class="row bg-red-7 text-white justify-center q-pa-sm"
           >
             {{ errorMsg }}
@@ -67,14 +78,40 @@
   </q-page>
 </template>
 
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { useAccountStore } from 'stores/account-store';
+import { useAuthStore } from 'stores/auth-store';
+import { storeToRefs } from 'pinia';
+const accountStore = useAccountStore();
+const authStore = useAuthStore();
+const { tokenData } = storeToRefs(authStore);
+const { getAccount } = accountStore;
+const { currentAccount } = storeToRefs(accountStore);
+const isAlreadyLoggedIn = ref(false);
+
+export default defineComponent({
+  async beforeRouteEnter() {
+    try {
+      const res = await getAccount(tokenData.value?.userId || '');
+      if (res) {
+        isAlreadyLoggedIn.value = true;
+      }
+    } catch (error) {
+      isAlreadyLoggedIn.value = false;
+      console.log(error);
+    }
+  },
+});
+</script>
+
 <script setup lang="ts">
 import { ref } from 'vue';
-import { RouteNames } from '../../router/routes';
-import axios from 'axios';
-import { httpService } from '../../services/http-services/http.service';
-import { useRouter } from 'vue-router';
+import { RouteNames } from 'src/router/routes';
+import { useAccountStore } from 'stores/account-store';
 import { useAuthStore } from 'stores/auth-store';
-
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 const router = useRouter();
 const { login } = useAuthStore();
 
@@ -99,14 +136,14 @@ const onSubmit = async () => {
 
     await router.push({ name: RouteNames.home });
     errorMsg.value = '';
-  } catch (error:any) {
-    // errorMsg.value = error.response.msg;
+  } catch (error: any) {
+    console.log('didnt work');
+    errorMsg.value = 'Email or Password is invalid';
   }
 };
 </script>
 
 <style scoped>
-
 .v-enter-active,
 .v-leave-active {
   transition: all 0.5s ease;
@@ -123,7 +160,6 @@ const onSubmit = async () => {
 .v-leave-from {
   opacity: 1;
 }
-
 
 .button {
   margin: 1vh;

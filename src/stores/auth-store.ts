@@ -34,6 +34,7 @@ export const useAuthStore = defineStore('auth', () => {
     const res = await authService.login(data);
     console.log(res);
     setAuthData();
+    return res;
   }
   async function register(data: object) {
     console.log('register submitted');
