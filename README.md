@@ -1,6 +1,6 @@
 # Book Of Faces (book-of-faces)
 
-facebook mock but with a touch of soupchik
+Facebook mock Front-end side
 
 ## Install the dependencies
 ```bash
