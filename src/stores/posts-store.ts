@@ -13,7 +13,6 @@ export const usePostsStore = defineStore('posts', () => {
 
   async function getPosts() {
     const res = await postsService.getPosts();
-    console.log(res,'SAY WHAAT')
     posts.value = res.data.posts;
     return res.data.posts;
   }

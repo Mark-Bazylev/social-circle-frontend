@@ -42,6 +42,10 @@
               class="row"
               :key="userId"
               v-for="userId in friendsData?.sentRequests || []"
+              :to="{
+                name: RouteNames.profile,
+                params: { id: accountsMap[userId].createdBy },
+              }"
             >
               <q-item-section>
                 <q-avatar>
@@ -51,7 +55,12 @@
               <q-item-section>
                 {{ accountsMap[userId].name }}
               </q-item-section>
-              <q-item-section> friend request sent </q-item-section>
+              <q-item-section>
+                <q-item-label>
+                  <q-icon name="done" />
+                  Request Sent
+                </q-item-label>
+              </q-item-section>
             </q-item>
           </q-list>
           <div
@@ -69,6 +78,10 @@
               class="row"
               :key="userId"
               v-for="userId in friendsData?.receivedRequests || []"
+              :to="{
+                name: RouteNames.profile,
+                params: { id: accountsMap[userId].createdBy },
+              }"
             >
               <q-item-section>
                 <q-avatar>
@@ -81,7 +94,7 @@
               <q-item-section>
                 <q-btn
                   :loading="acceptFriendLoading[userId]"
-                  @click="acceptFriend(userId)"
+                  @click.stop.prevent="acceptFriend(userId)"
                   icon="person_add"
                   rounded
                   >Accept</q-btn
@@ -104,6 +117,10 @@
               class="row"
               :key="userId"
               v-for="userId in potentialFriends"
+              :to="{
+                name: RouteNames.profile,
+                params: { id: accountsMap[userId].createdBy },
+              }"
             >
               <q-item-section>
                 <q-avatar>
@@ -114,13 +131,15 @@
                 {{ accountsMap[userId].name }}
               </q-item-section>
               <q-item-section>
-                <q-btn
-                  :loading="addFriendLoading[userId]"
-                  @click="addFriend(userId)"
-                  icon="person_add"
-                  rounded
-                  >Add</q-btn
-                >
+                <div>
+                  <q-btn
+                    :loading="addFriendLoading[userId]"
+                    @click.stop.prevent="addFriend(userId)"
+                    icon="person_add"
+                    rounded
+                    >Add</q-btn
+                  >
+                </div>
               </q-item-section>
             </q-item>
           </q-list>
@@ -142,11 +161,12 @@ import { useFriendsStore } from 'stores/friends-store';
 import { storeToRefs } from 'pinia';
 import { Account } from 'src/services/http-services/accounts-service/models';
 import { RouteNames } from 'src/router/routes';
-
-const { getAllAccounts } = useAccountStore();
-const store = useFriendsStore();
-const { getFriendsData, sendFriendRequest, acceptFriendRequest } = store;
-const { accountsMap, friendsData, potentialFriends } = storeToRefs(store);
+const accountStore = useAccountStore();
+const { getAllAccounts } = accountStore;
+const { accountsMap } = storeToRefs(accountStore);
+const friendsStore = useFriendsStore();
+const { getFriendsData, sendFriendRequest, acceptFriendRequest } = friendsStore;
+const { friendsData, potentialFriends } = storeToRefs(friendsStore);
 const accounts = ref<Account[]>([]);
 const addFriendLoading = ref<Record<string, boolean>>({});
 const acceptFriendLoading = ref<Record<string, boolean>>({});
@@ -175,6 +195,7 @@ const addFriend = async (userId: string) => {
       friendsData.value?.sentRequests.push(userId);
     }
   } catch (error) {
+    console.log(error);
   } finally {
     addFriendLoading.value[userId] = false;
   }

@@ -1,20 +1,18 @@
 <template>
-  <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
+  <div
+    class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center"
+  >
     <div>
-      <div style="font-size: 30vh">
-        404
-      </div>
+      <div style="font-size: 30vh">404</div>
 
-      <div class="text-h2" style="opacity:.4">
-         Profile Not Found
-      </div>
+      <div class="text-h2" style="opacity: 0.4">Profile Not Found</div>
 
       <q-btn
         class="q-mt-xl"
         color="white"
         text-color="blue"
         unelevated
-        to='/home'
+        to="/home"
         label="Go Home"
         no-caps
       />

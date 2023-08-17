@@ -1,6 +1,14 @@
 <template>
   <q-page class="column justify-center">
     <q-card>
+      <q-banner class="bg-primary text-white">
+        <template v-slot:avatar>
+          <q-icon name="menu_book" />
+        </template>
+        <template v-slot:default>
+          <h5 style="margin: 0">Book Of Faces</h5>
+        </template>
+      </q-banner>
       <q-btn
         clickable
         v-ripple
@@ -34,7 +42,7 @@
           v-model="password"
           label="Your password"
           lazy-rules
-          :rules="[]"
+          :rules="[(val) => (val && val.length > 0) || 'Please type something']"
         >
           <q-btn
             @click="isPasswordVisible = !isPasswordVisible"
@@ -84,16 +92,14 @@ import { useAccountStore } from 'stores/account-store';
 import { useAuthStore } from 'stores/auth-store';
 import { storeToRefs } from 'pinia';
 const accountStore = useAccountStore();
-const authStore = useAuthStore();
-const { tokenData } = storeToRefs(authStore);
-const { getAccount } = accountStore;
+const { getMyAccount } = accountStore;
 const { currentAccount } = storeToRefs(accountStore);
 const isAlreadyLoggedIn = ref(false);
 
 export default defineComponent({
   async beforeRouteEnter() {
     try {
-      const res = await getAccount(tokenData.value?.userId || '');
+      const res = await getMyAccount();
       if (res) {
         isAlreadyLoggedIn.value = true;
       }
@@ -112,6 +118,7 @@ import { useAccountStore } from 'stores/account-store';
 import { useAuthStore } from 'stores/auth-store';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { emailRegEx } from 'src/utils/regex';
 const router = useRouter();
 const { login } = useAuthStore();
 
@@ -120,8 +127,6 @@ const password = ref('');
 const errorMsg = ref('');
 
 const isPasswordVisible = ref(false);
-const emailRegEx =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const onReset = () => {
   email.value = '';
   password.value = '';

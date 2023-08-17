@@ -21,17 +21,21 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { usePostsStore } from 'stores/posts-store';
+import { useAccountStore } from 'stores/account-store';
+import {storeToRefs} from "pinia";
 
 const postsStore = usePostsStore();
 const { getLikes } = postsStore;
 const props = defineProps(['isLikesDialog', 'likes', 'id']);
 const isLikesDialog = ref(props.isLikesDialog);
-const accountsMap = ref({});
+const accountsStore=useAccountStore()
+const { addAccounts } = accountsStore
+const {accountsMap}=storeToRefs(accountsStore)
 
 onMounted(async () => {
   try {
     const res = await getLikes(props.id);
-    accountsMap.value = res.data.accountsMap;
+    addAccounts(res.data.accountsMap);
   } catch (error) {}
 });
 </script>

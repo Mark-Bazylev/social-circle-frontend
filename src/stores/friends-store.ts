@@ -1,21 +1,17 @@
 import { defineStore } from 'pinia';
 import { friendsService } from 'src/services/http-services/friends-service/friends.service';
 import { ref } from 'vue';
-import {
-  AccountsMap,
-  FriendsData,
-} from 'src/services/http-services/friends-service/models';
-
+import { FriendsData } from 'src/services/http-services/friends-service/models';
+import { useAccountStore } from 'stores/account-store';
+const { addAccounts } = useAccountStore();
 export const useFriendsStore = defineStore('friends', () => {
   const friendsData = ref<FriendsData | null>(null);
-  const accountsMap = ref<AccountsMap | null>({});
-  const potentialFriends = ref<[string] | null>(null);
+  const potentialFriends = ref<string[] | null>(null);
   const getFriendsData = async () => {
     const res = await friendsService.getFriendsData();
-
     friendsData.value = res.data.friendsData;
     potentialFriends.value = res.data.potentialFriends;
-    accountsMap.value = res.data.accountsMap;
+    addAccounts(res.data.accountsMap);
     return res.data;
   };
   async function sendFriendRequest(userId: string) {
@@ -27,7 +23,7 @@ export const useFriendsStore = defineStore('friends', () => {
 
   return {
     friendsData,
-    accountsMap,
+
     potentialFriends,
     getFriendsData,
     sendFriendRequest,

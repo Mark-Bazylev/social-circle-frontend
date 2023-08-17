@@ -1,9 +1,9 @@
 <template>
   <q-list>
     <q-item>
-      <q-item-section side top>
+      <q-item-section avatar>
         <q-avatar size="56px">
-          <img :src="currentAccount?.avatarUrl" />
+          <img :src="currentAccount?.avatarUrl" alt=""/>
         </q-avatar>
       </q-item-section>
       <q-item-section>
@@ -13,7 +13,7 @@
           outlined
           class="input"
           autogrow
-          placeholder="comment here"
+          placeholder="Comment here"
           type="text"
         />
       </q-item-section>
@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { useAccountStore } from 'stores/account-store';
 import { storeToRefs } from 'pinia';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { useCommentsStore } from 'stores/comments-store';
 
 const accountStore = useAccountStore();
