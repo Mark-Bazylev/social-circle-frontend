@@ -1,4 +1,4 @@
-import { httpService } from 'src/services/http-services/http.service';
+import { httpService } from 'src/services/api-services/http.service';
 
 class FriendsService {
   getFriendsData() {

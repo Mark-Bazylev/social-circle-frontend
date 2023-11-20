@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { postsService } from 'src/services/http-services/posts-service/posts.service';
-import { Post } from 'src/services/http-services/posts-service/models';
+import { postsService } from 'src/services/api-services/posts-service/posts.service';
+import { Post } from 'src/services/api-services/posts-service/models';
 
 export const usePostsStore = defineStore('posts', () => {
   const posts = ref<Post[]>([]);

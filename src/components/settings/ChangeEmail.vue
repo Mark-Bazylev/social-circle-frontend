@@ -28,6 +28,7 @@
     </q-input>
   </q-form>
 </template>
+
 <script setup lang="ts">
 import { emailRegEx } from 'src/utils/regex';
 import { onMounted, ref } from 'vue';

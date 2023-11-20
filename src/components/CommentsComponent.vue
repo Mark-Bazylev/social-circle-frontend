@@ -64,7 +64,7 @@ import CommentInput from 'components/CommentInput.vue';
 import { useAuthStore } from 'stores/auth-store';
 import { useAccountStore } from 'stores/account-store';
 import { RouteNames } from 'src/router/routes';
-import { Comment } from 'src/services/http-services/comments-service/models';
+import { Comment } from 'src/services/api-services/comments-service/models';
 
 const props = defineProps(['postId']);
 const commentsStore = useCommentsStore();

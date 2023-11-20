@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import {
   authService,
   authTokenData,
-} from 'src/services/http-services/auth.service';
+} from 'src/services/api-services/auth.service';
 import jwt_decode from 'jwt-decode';
 
 export const useAuthStore = defineStore('auth', () => {

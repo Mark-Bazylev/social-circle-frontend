@@ -10,6 +10,8 @@ export enum RouteNames {
   login = 'login',
   register = 'register',
   profileNotFound = 'profileNotFound',
+  chat = 'chat',
+  chatWindow = 'chatWindow',
 }
 const routes: RouteRecordRaw[] = [
   {
@@ -43,6 +45,24 @@ const routes: RouteRecordRaw[] = [
             path: 'settings',
             name: RouteNames.settings,
             component: () => import('pages/SettingsPage.vue'),
+          },
+          {
+            path: 'chat/:id',
+            name: RouteNames.chat,
+            redirect: (to) => {
+              return {
+                name: RouteNames.chatWindow,
+                params: { id: to.params.id },
+              };
+            },
+            component: () => import('pages/ChatPage.vue'),
+            children: [
+              {
+                path: '',
+                name: RouteNames.chatWindow,
+                component: () => import('components/chat/ChatComponent.vue'),
+              },
+            ],
           },
         ],
       },

@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from 'pinia';
 import { ref } from 'vue';
-import { Comment } from 'src/services/http-services/comments-service/models';
-import { commentsService } from 'src/services/http-services/comments-service/comments.service';
+import { Comment } from 'src/services/api-services/comments-service/models';
+import { commentsService } from 'src/services/api-services/comments-service/comments.service';
 import { usePostsStore } from 'stores/posts-store';
 import { useAccountStore } from 'stores/account-store';
 const { posts } = storeToRefs(usePostsStore());
@@ -31,7 +31,7 @@ export const useCommentsStore = defineStore('comments', () => {
     );
     comments.value.push(newComment.data);
     const newAccount = await getMyAccount();
-    addAccounts({ [newComment.data.createdBy]: newAccount.data });
+    addAccounts({ [newComment.data.createdBy]: newAccount });
     const post = posts.value.find((post) => post._id === commentedIn);
     if (post) post.commentsLength++;
     return newComment.data;

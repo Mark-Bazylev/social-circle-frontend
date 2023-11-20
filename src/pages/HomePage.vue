@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md q-gutter-md">
+  <q-page class="q-pa-md q-gutter-md">
     <q-card class="relative-position card-example" flat bordered>
       <q-card-section>
         <template v-if="showPosts">
@@ -18,7 +18,7 @@
         </div>
       </q-card-section>
     </q-card>
-  </div>
+  </q-page>
 </template>
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';

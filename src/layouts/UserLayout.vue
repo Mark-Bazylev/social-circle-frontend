@@ -10,9 +10,9 @@
     </q-header>
     <div class="page-container">
       <q-page-container>
-        <q-page>
+
           <router-view />
-        </q-page>
+
       </q-page-container>
     </div>
   </q-layout>

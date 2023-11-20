@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { friendsService } from 'src/services/http-services/friends-service/friends.service';
+import { friendsService } from 'src/services/api-services/friends-service/friends.service';
 import { ref } from 'vue';
-import { FriendsData } from 'src/services/http-services/friends-service/models';
+import { FriendsData } from 'src/services/api-services/friends-service/models';
 import { useAccountStore } from 'stores/account-store';
 const { addAccounts } = useAccountStore();
 export const useFriendsStore = defineStore('friends', () => {

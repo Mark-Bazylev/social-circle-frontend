@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-ma-md">
+  <q-page class="row q-ma-md">
     <q-card class="friend-card">
       <q-tabs v-model="tab" dense class="bg-indigo text-white">
         <q-tab name="friends" label="My Friends" class="q-pa-sm" />
@@ -10,15 +10,16 @@
         <q-tab-panel name="friends">
           <q-list>
             <q-item
+              v-for="userId in friendsData?.friendsList || []"
+              :key="userId"
               clickable
               v-ripple
               :to="{
                 name: RouteNames.profile,
-                params: { id: accountsMap[userId].createdBy },
+                params: { id: userId },
               }"
               class="row"
-              :key="userId"
-              v-for="userId in friendsData?.friendsList || []"
+
             >
               <q-item-section>
                 <q-avatar>
@@ -27,6 +28,17 @@
               </q-item-section>
               <q-item-section>
                 {{ accountsMap[userId].name }}
+              </q-item-section>
+              <q-item-section>
+                <q-btn
+                  :to="{
+                  name:RouteNames.chat,
+                  params:{id:userId}
+                  }"
+                  icon="chat"
+                  rounded
+                >chat</q-btn
+                >
               </q-item-section>
             </q-item>
           </q-list>
@@ -152,14 +164,14 @@
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
-  </div>
+  </q-page>
 </template>
 <script setup lang="ts">
 import { useAccountStore } from 'stores/account-store';
 import { onMounted, ref } from 'vue';
 import { useFriendsStore } from 'stores/friends-store';
 import { storeToRefs } from 'pinia';
-import { Account } from 'src/services/http-services/accounts-service/models';
+import { Account } from 'src/services/api-services/accounts-service/models';
 import { RouteNames } from 'src/router/routes';
 const accountStore = useAccountStore();
 const { getAllAccounts } = accountStore;

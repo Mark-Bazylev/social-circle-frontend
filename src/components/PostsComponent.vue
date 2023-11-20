@@ -21,7 +21,7 @@
         <q-item-section>
           <q-item-label>{{ accountsMap[post.createdBy]?.name }}</q-item-label>
           <q-item-label caption>{{
-            getDayOfWeek(post.createdAt)
+              getFormatedDate(post.createdAt)
           }}</q-item-label>
         </q-item-section>
       </q-item>
@@ -85,9 +85,9 @@ import LikesDialog from 'components/LikesDialog.vue';
 import { useAuthStore } from 'stores/auth-store';
 import { storeToRefs } from 'pinia';
 import CommentsComponent from 'components/CommentsComponent.vue';
-import { getDayOfWeek } from '../utils/dates';
+import {getDayOfWeek, getFormatedDate} from '../utils/dates';
 import { RouteNames } from 'src/router/routes';
-import { Post } from 'src/services/http-services/posts-service/models';
+import { Post } from 'src/services/api-services/posts-service/models';
 const props = defineProps(['posts', 'accountsMap']);
 const authStore = useAuthStore();
 const postsStore = usePostsStore();

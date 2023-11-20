@@ -1,5 +1,5 @@
-import { httpService } from 'src/services/http-services/http.service';
-import { Account } from 'src/services/http-services/accounts-service/models';
+import { httpService } from 'src/services/api-services/http.service';
+import { Account } from 'src/services/api-services/accounts-service/models';
 
 class AccountsService {
   getAllAccounts() {
