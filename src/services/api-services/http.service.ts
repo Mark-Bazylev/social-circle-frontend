@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 import { Notify } from 'quasar';
 
@@ -25,8 +25,8 @@ class HttpService {
     common.Authorization = token ? `Bearer ${token}` : '';
   }
 
-  get<T = any>(url: string, config?: AxiosRequestConfig) {
-    return this.service.get<T>(url, config);
+  get<T = any,R=AxiosResponse<T>>(url: string, config?: AxiosRequestConfig) {
+    return this.service.get<T,R>(url, config);
   }
   post<T = any>(
     url: string,

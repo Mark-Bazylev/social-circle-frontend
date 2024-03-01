@@ -188,7 +188,6 @@ onMounted(async () => {
     const res = await getAllAccounts();
     accounts.value = res.data.accounts;
     const res2 = await getFriendsData();
-    console.log(res2);
   } catch (error) {
     console.log(error);
   }
@@ -197,7 +196,6 @@ const addFriend = async (userId: string) => {
   try {
     addFriendLoading.value[userId] = true;
     const res = await sendFriendRequest(userId);
-    console.log('yes maan: ', res);
     const index = potentialFriends.value?.findIndex(
       (id) => id.toString() === userId
     );

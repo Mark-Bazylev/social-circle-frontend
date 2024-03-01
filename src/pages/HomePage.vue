@@ -3,12 +3,14 @@
     <q-card class="relative-position card-example" flat bordered>
       <q-card-section>
         <template v-if="showPosts">
+
           <div v-if="sortedFriendsPosts.length != 0">
             <PostsComponent
               :posts="sortedFriendsPosts"
               :accountsMap="accountsMap"
             />
           </div>
+
           <div v-else class="posts-container">
             <h4>No Posts to show</h4>
           </div>

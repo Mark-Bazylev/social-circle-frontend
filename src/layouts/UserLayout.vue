@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-icon size="28px" name="menu_book" />
-        <q-toolbar-title> Book Of Faces </q-toolbar-title>
+        <q-toolbar-title> Social Circle </q-toolbar-title>
         <DrawerList />
         <q-btn flat @click="signOut" to="/auth">Sign Out</q-btn>
       </q-toolbar>

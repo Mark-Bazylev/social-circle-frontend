@@ -10,9 +10,11 @@
       <!--      add friend button or friend already sent and stuff-->
 
       <!--      input and post form-->
+
       <div v-if="showInput">
         <ProfileInput />
       </div>
+
       <template v-else>
         <div v-if="friendStatus.isFriend" class="row justify-center q-ma-md">
           <q-chip
@@ -37,6 +39,7 @@
             no-caps
           />
         </div>
+
         <div
           v-else-if="friendStatus.isRequestSent"
           class="row justify-center q-ma-md"
@@ -192,7 +195,6 @@ async function addFriend() {
   try {
     addFriendLoading.value = true;
     const res = await sendFriendRequest(userId);
-    console.log('yes maan: ', res);
     const index = potentialFriends.value?.findIndex(
       (id) => id.toString() === userId
     );

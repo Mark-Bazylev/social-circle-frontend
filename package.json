@@ -1,8 +1,8 @@
 {
-  "name": "book-of-faces",
+  "name": "social-circle-frontend",
   "version": "0.0.1",
-  "description": "facebook mock but with a touch of soupchik",
-  "productName": "Book Of Faces",
+  "description": "A social Media Website",
+  "productName": "Social Circle",
   "author": "Mark Bazylev",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@types/socket.io-client": "^3.0.0",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "jwt-decode": "^3.1.2",

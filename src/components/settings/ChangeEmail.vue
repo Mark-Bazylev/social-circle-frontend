@@ -61,7 +61,7 @@ async function updateEmail() {
       });
     }
   } catch (e) {
-    console.log('yay');
+    console.log(e)
   }
 }
 </script>

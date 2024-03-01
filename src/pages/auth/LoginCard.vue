@@ -6,7 +6,7 @@
           <q-icon name="menu_book" />
         </template>
         <template v-slot:default>
-          <h5 style="margin: 0">Book Of Faces</h5>
+          <h5 style="margin: 0">Social Circle</h5>
         </template>
       </q-banner>
       <q-btn
@@ -142,7 +142,7 @@ const onSubmit = async () => {
     await router.push({ name: RouteNames.home });
     errorMsg.value = '';
   } catch (error: any) {
-    console.log('didnt work');
+    console.log(error);
     errorMsg.value = 'Email or Password is invalid';
   }
 };

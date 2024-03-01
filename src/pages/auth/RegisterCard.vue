@@ -6,7 +6,7 @@
           <q-icon name="menu_book" />
         </template>
         <template v-slot:default>
-          <h5 style="margin: 0">Book Of Faces</h5>
+          <h5 style="margin: 0">Social Circle</h5>
         </template>
       </q-banner>
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md q-pa-md">
