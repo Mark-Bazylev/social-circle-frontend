@@ -1,41 +1,35 @@
-# Book Of Faces (book-of-faces)
+# Social Circle Frontend
 
-Facebook mock Front-end side
+Welcome to the Social Circle Frontend repository! This project aims to provide a user-friendly interface for interacting with our Social Circle application.
 
-## Install the dependencies
+## Features
+
+- **User Authentication**: Secure user authentication system.
+- **User Profiles**: Customizable user profiles.
+- **Friend Connections**: Connect with friends and view their profiles.
+- **Home Page**: Dynamic feed displaying posts from friends.
+- **Post Creation and Interaction**: Create posts, comment on posts, and like posts.
+- **Chat System**: Real-time chat conversations using Socket.IO.
+- **Comments and Likes**: Write comments on posts and like comments.
+- **Settings Page**: Configure account settings.
+## Installation
+
+Install my-project with npm
+
 ```bash
-yarn
-# or
-npm install
+  npm install
 ```
+    
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+2. Start the development server:
+
+## Installation
+
+Install my-project with npm
+
 ```bash
-quasar dev
+    npm start
 ```
+    
+3. Open your browser and visit `http://localhost:9000` to view the application.
 
-
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
