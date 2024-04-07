@@ -10,6 +10,7 @@
 
 const { configure } = require('quasar/wrappers');
 const path = require('path');
+console.log(process.env)
 
 module.exports = configure(function (/* ctx */) {
   return {
