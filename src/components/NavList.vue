@@ -1,7 +1,7 @@
 <template>
   <q-btn
     icon="home"
-    label="home"
+    label="Home"
     stack
     flat
     no-caps

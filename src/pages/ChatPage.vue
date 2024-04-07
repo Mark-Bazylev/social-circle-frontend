@@ -136,7 +136,7 @@ const { tokenData } = storeToRefs(authStore);
 
 
 
-const userId = tokenData?.value?.userId || '';
+const userId = tokenData?.value?.user._id || '';
 const otherUserId = route.params.id as string;
 const scrollAreaRef = ref<QScrollArea | null>(null);
 

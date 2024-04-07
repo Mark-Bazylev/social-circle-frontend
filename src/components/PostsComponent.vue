@@ -45,7 +45,7 @@
         <q-btn
           :loading="loadingLike"
           unelevated
-          v-if="!post.likes.includes(tokenData?.userId)"
+          v-if="!post.likes.includes(tokenData?.user._id)"
           @click="setLikePost(post)"
           icon="thumb_up"
           label="Like"
@@ -116,7 +116,7 @@ async function setLikePost(post: Post) {
   try {
     loadingLike.value = true;
     await likePost(post._id);
-    post.likes.push(tokenData.value?.userId as string);
+    post.likes.push(tokenData.value?.user._id as string);
   } catch (error) {
     console.log('Failed to like post', error);
   } finally {
@@ -128,7 +128,7 @@ async function setUnlikePost(post: Post) {
     loadingLike.value = true;
     await unlikePost(post._id);
     post.likes.splice(
-      post.likes.findIndex((id: string) => id === tokenData.value?.userId),
+      post.likes.findIndex((id: string) => id === tokenData.value?.user._id),
       1
     );
   } catch (error) {

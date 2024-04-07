@@ -1,8 +1,9 @@
 import {httpService} from "src/services/api-services/http.service";
+import { User } from "src/models/User";
 
 
 export interface authTokenData{
-  userId:string,
+  user:User,
   iat:number,
   exp:number,
 
