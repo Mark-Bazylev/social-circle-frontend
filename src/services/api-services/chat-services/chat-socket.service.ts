@@ -1,5 +1,5 @@
 import { httpService } from 'src/services/api-services/http.service';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { authService } from 'src/services/api-services/auth.service';
 import { nextTick } from 'vue';
 
