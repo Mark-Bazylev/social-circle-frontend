@@ -10,9 +10,8 @@
 
 const { configure } = require('quasar/wrappers');
 const path = require('path');
-const dotenv=require('dotenv')
-dotenv.config()
-console.log(process.env.BASE_URL)
+const dotenv = require('dotenv');
+console.log(process.env.BASE_URL);
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
@@ -65,9 +64,7 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      env: {
-        BASE_URL:process.env.BASE_URL
-      },
+      env: dotenv.config().parsed,
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
