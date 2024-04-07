@@ -123,7 +123,7 @@ const styleFn = (offset: number, height: number) => {
 
 
 
-const socket = io('http://localhost:3000/', {
+const socket = io(process.env.SOCKET_URL!, {
   auth: {
     token: authService.getAuthToken(),
   },

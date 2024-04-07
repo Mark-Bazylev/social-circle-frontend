@@ -4,7 +4,7 @@ import { authService } from 'src/services/api-services/auth.service';
 import { nextTick } from 'vue';
 
 class ChatService {
-  public socket = io('http://localhost:3000/', {
+  public socket = io(process.env.SOCKET_URL!, {
     auth: {
       token: authService.getAuthToken(),
     },
