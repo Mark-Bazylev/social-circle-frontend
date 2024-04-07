@@ -12,6 +12,7 @@ const { configure } = require('quasar/wrappers');
 const path = require('path');
 const dotenv=require('dotenv')
 dotenv.config()
+console.log(process.env.BASE_URL)
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
