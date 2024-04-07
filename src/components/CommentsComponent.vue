@@ -30,7 +30,7 @@
           </q-item-label>
           <q-item-label>
             <q-btn
-              v-if="!comment.likes.includes(tokenData?.userId || '')"
+              v-if="!comment.likes.includes(tokenData?.user._id || '')"
               @click="setLikeComment(comment)"
               icon="thumb_up"
               round
@@ -97,7 +97,7 @@ async function setUnlikeComment(comment: Comment) {
   try {
     await unlikeComment(comment._id);
     comment.likes.splice(
-      comment.likes.findIndex((id: string) => id === tokenData.value?.userId),
+      comment.likes.findIndex((id: string) => id === tokenData.value?.user._id),
       1
     );
   } catch (error) {

@@ -17,7 +17,7 @@ export const useAccountStore = defineStore('account', () => {
     return await accountsService.getAllAccounts();
   }
   async function getMyAccount() {
-    const res = await accountsService.getAccount(tokenData.value?.userId || '');
+    const res = await accountsService.getAccount(tokenData.value?.user._id || '');
     console.log(res.data);
     currentAccount.value = res.data;
     return res.data;
