@@ -17,14 +17,14 @@ export const useAccountStore = defineStore('account', () => {
     return await accountsService.getAllAccounts();
   }
   async function getMyAccount() {
-    const res = await accountsService.getAccount(tokenData.value?.user._id || '');
-    console.log(res.data);
+    const res = await accountsService.getAccount(
+      tokenData.value?.user._id || ''
+    );
     currentAccount.value = res.data;
     return res.data;
   }
   async function getAccount(id: string) {
     const res = await accountsService.getAccount(id);
-    console.log(res.data);
     return res.data;
   }
   async function editAccount(data: any) {

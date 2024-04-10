@@ -1,1 +1,0 @@
-import{u as r}from"./auth-store.79001c12.js";import{_ as n,d as s,k as a,l as u,m as c,R as p}from"./index.737d3221.js";import"./axios.37d53be1.js";function o(){const{isLoggedIn:e}=r();if(!e())return{name:p.auth}}const f=s({beforeRouteEnter:o,beforeRouteUpdate:o});function i(e,m,_,d,R,l){const t=a("RouterView");return u(),c(t)}var x=n(f,[["render",i]]);export{x as default};

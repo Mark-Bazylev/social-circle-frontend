@@ -52,7 +52,6 @@ const authStore = useAuthStore();
 const { changePassword } = authStore;
 const $q = useQuasar();
 async function onSubmit() {
-  console.log(currentPassword.value, newPassword.value);
   try {
     const res = await changePassword({
       currentPassword: currentPassword.value,

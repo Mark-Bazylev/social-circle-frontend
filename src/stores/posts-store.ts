@@ -31,12 +31,10 @@ export const usePostsStore = defineStore('posts', () => {
   }
 
   async function likePost(postId: string) {
-    console.log(postId);
     return await postsService.likePost(postId);
   }
 
   async function unlikePost(postId: string) {
-    console.log(postId);
     return await postsService.unlikePost(postId);
   }
   async function getLikes(id: string) {

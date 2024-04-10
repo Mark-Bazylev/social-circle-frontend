@@ -45,7 +45,6 @@ class AuthService{
   }
   async register(data:any) {
     const res = await httpService.post('auth/register', data);
-    console.log(res)
     this.setAuthToken(res.data.token);
     return res;
   }
