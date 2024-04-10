@@ -16,6 +16,7 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "@types/socket.io-client": "^3.0.0",
+    "@vercel/blob": "^0.22.2",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.4.5",

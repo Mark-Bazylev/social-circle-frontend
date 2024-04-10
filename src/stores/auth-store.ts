@@ -45,13 +45,11 @@ export const useAuthStore = defineStore('auth', () => {
     return await authService.changePassword(data);
   }
   async function login(data: any) {
-    console.log('login submitted');
     const res = await authService.login(data);
     setAuthData();
     return res;
   }
   async function register(data: object) {
-    console.log('register submitted');
     await authService.register(data);
     setAuthData();
   }

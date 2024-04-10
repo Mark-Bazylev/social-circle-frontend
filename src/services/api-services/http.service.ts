@@ -5,7 +5,6 @@ import { Notify } from 'quasar';
 class HttpService {
   private service: AxiosInstance;
   constructor() {
-    console.log(process.env.BASE_URL)
     this.service = axios.create({
       baseURL: process.env.BASE_URL,
     });

@@ -154,8 +154,6 @@ async function onLoad(index: any, done: any) {
 
   await getChatMessagesByPage(index, userId, otherUserId);
 
-  console.log(chatMessages.value);
-
   messages.value = [...chatMessages.value.reverse(), ...messages.value];
   chatMessages.value.length === 0 ? done(true) : done();
 }
@@ -202,7 +200,6 @@ onMounted(async () => {
   const res1 = await getMyAccount();
   const res2 = await getAccount(otherUserId);
   await addAccounts({ [res1.createdBy]: res1, [res2.createdBy]: res2 });
-  console.log(res1, ' and ', res2, 'accounts map: ', accountsMap.value);
 
   socket.on('connect', () => {
     // Socket is connected
